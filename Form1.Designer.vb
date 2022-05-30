@@ -30,6 +30,8 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -106,11 +108,33 @@ Partial Class Form1
         Me.Button3.Text = "Register"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Stencil", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label5.Location = New System.Drawing.Point(46, 401)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(410, 47)
+        Me.Label5.TabIndex = 9
+        Me.Label5.Text = "Login As An Admin?"
+        '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Yu Gothic", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Button1.Location = New System.Drawing.Point(453, 401)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(201, 47)
+        Me.Button1.TabIndex = 10
+        Me.Button1.Text = "Click Here"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 405)
+        Me.ClientSize = New System.Drawing.Size(790, 470)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.TextBox2)
@@ -134,4 +158,6 @@ Partial Class Form1
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Button1 As Button
 End Class

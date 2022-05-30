@@ -52,3 +52,5 @@ Public Class new_acc_reg
         updateTableReg()
     End Sub
 End Class
+
+
