@@ -19,16 +19,14 @@ Public Class Customer_Rep
         sqlConn.ConnectionString = "server =" + server + ";" + "user id =" + username + ";" + "password =" + password + ";" + "database =" + database
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
-        sqlCmd.CommandText = "SELECT * FROM myconnector.myconnector"
+        sqlCmd.CommandText = "SELECT * FROM myconnector.customer"
         sqlRd = sqlCmd.ExecuteReader
         sqlDt.Load(sqlRd)
         sqlRd.Close()
         sqlConn.Close()
         DataGridView1.DataSource = sqlDt
     End Sub
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
-    End Sub
 
     Private Sub Customer_Rep_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         updateTable()

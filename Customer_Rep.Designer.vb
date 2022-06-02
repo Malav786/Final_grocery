@@ -33,14 +33,14 @@ Partial Class Customer_Rep
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 29
-        Me.DataGridView1.Size = New System.Drawing.Size(922, 571)
+        Me.DataGridView1.Size = New System.Drawing.Size(1011, 659)
         Me.DataGridView1.TabIndex = 0
         '
         'Customer_Rep
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1145, 715)
+        Me.ClientSize = New System.Drawing.Size(1229, 806)
         Me.Controls.Add(Me.DataGridView1)
         Me.Name = "Customer_Rep"
         Me.Text = "Customer_Rep"

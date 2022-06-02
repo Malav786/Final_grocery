@@ -8,4 +8,9 @@
         customer_edit.MdiParent = Me
         customer_edit.Show()
     End Sub
+
+    Private Sub StockReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockReportToolStripMenuItem.Click
+        stock_rep.MdiParent = Me
+        stock_rep.Show()
+    End Sub
 End Class

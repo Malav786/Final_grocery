@@ -27,6 +27,8 @@ Partial Class Admin_MainPage
         Me.EditCustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StockQuantityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.StockReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -51,6 +53,7 @@ Partial Class Admin_MainPage
         '
         'StockQuantityToolStripMenuItem
         '
+        Me.StockQuantityToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StockReportToolStripMenuItem, Me.AddStockToolStripMenuItem})
         Me.StockQuantityToolStripMenuItem.Name = "StockQuantityToolStripMenuItem"
         Me.StockQuantityToolStripMenuItem.Size = New System.Drawing.Size(119, 24)
         Me.StockQuantityToolStripMenuItem.Text = "Stock Quantity"
@@ -64,6 +67,18 @@ Partial Class Admin_MainPage
         Me.MenuStrip1.Size = New System.Drawing.Size(1208, 28)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'StockReportToolStripMenuItem
+        '
+        Me.StockReportToolStripMenuItem.Name = "StockReportToolStripMenuItem"
+        Me.StockReportToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
+        Me.StockReportToolStripMenuItem.Text = "Stock Report"
+        '
+        'AddStockToolStripMenuItem
+        '
+        Me.AddStockToolStripMenuItem.Name = "AddStockToolStripMenuItem"
+        Me.AddStockToolStripMenuItem.Size = New System.Drawing.Size(224, 26)
+        Me.AddStockToolStripMenuItem.Text = "Add Stock"
         '
         'Admin_MainPage
         '
@@ -87,4 +102,6 @@ Partial Class Admin_MainPage
     Friend WithEvents EditCustomerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StockQuantityToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents StockReportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddStockToolStripMenuItem As ToolStripMenuItem
 End Class
