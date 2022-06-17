@@ -13,4 +13,9 @@
         stock_rep.MdiParent = Me
         stock_rep.Show()
     End Sub
+
+    Private Sub AddStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddStockToolStripMenuItem.Click
+        stock_edit.MdiParent = Me
+        stock_edit.Show()
+    End Sub
 End Class

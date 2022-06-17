@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Win32
-Public Class customer_edit
+Public Class stock_edit
     Dim sqlConn As New MySqlConnection
     Dim sqlCmd As New MySqlCommand
     Dim sqlRd As MySqlDataReader
@@ -19,12 +19,28 @@ Public Class customer_edit
         sqlConn.ConnectionString = "server =" + server + ";" + "user id =" + username + ";" + "password =" + password + ";" + "database =" + database
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
-        sqlCmd.CommandText = "SELECT * FROM myconnector.customer"
+        sqlCmd.CommandText = "SELECT * FROM myconnector.stocks"
         sqlRd = sqlCmd.ExecuteReader
         sqlDt.Load(sqlRd)
         sqlRd.Close()
         sqlConn.Close()
         DataGridView1.DataSource = sqlDt
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        sqlConn.ConnectionString = "server =" + server + ";" + "user id =" + username + ";" + "password =" + password + ";" + "database =" + database
+        Try
+            sqlConn.Open()
+            sqlQuery = "insert into myconnector.stocks(desc, quantity, category, price, dof) values('" & TextBox1.Text & "','" & TextBox2.Text & "','" & TextBox3.Text & "','" & TextBox4.Text & "','" & DateTimePicker1.Text & "')"
+            sqlCmd = New MySqlCommand(sqlQuery, sqlConn)
+            sqlRd = sqlCmd.ExecuteReader
+            sqlConn.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "MySql Connector", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Finally
+            sqlConn.Dispose()
+        End Try
+        updateTable()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -43,7 +59,7 @@ Public Class customer_edit
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Try
             sqlConn.Open()
-            sqlQuery = "Delete from myconnector.customer where name = '" & TextBox1.Text & "'"
+            sqlQuery = "Delete from myconnector.stocks where name = '" & TextBox1.Text & "'"
             sqlCmd = New MySqlCommand(sqlQuery, sqlConn)
             sqlRd = sqlCmd.ExecuteReader
             MessageBox.Show("Data Deleted")
@@ -56,55 +72,34 @@ Public Class customer_edit
         updateTable()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        sqlConn.ConnectionString = "server =" + server + ";" + "user id =" + username + ";" + "password =" + password + ";" + "database =" + database
-        Try
-            sqlConn.Open()
-            sqlQuery = "Insert into myconnector.customer(name, phone, DOB, country, state, pincode, address) values('" & TextBox1.Text & "','" & TextBox2.Text & "','" & DateTimePicker1.Text & "','" & TextBox4.Text & "','" & TextBox5.Text & "','" & TextBox6.Text & "','" & TextBox7.Text & "')"
-            sqlCmd = New MySqlCommand(sqlQuery, sqlConn)
-            sqlRd = sqlCmd.ExecuteReader
-            sqlConn.Close()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "MySql Connector", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Finally
-            sqlConn.Dispose()
-        End Try
-        updateTable()
-    End Sub
-
-    Private Sub customer_edit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        updateTable()
-    End Sub
-
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         sqlConn.ConnectionString = "server =" + server + ";" + "user id =" + username + ";" + "password =" + password + ";" + "database =" + database
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         With sqlCmd
-            .CommandText = "Update myconnector.customer set name = @name , phone = @phone , DOB = @DOB , country = @country , state = @state, pincode = @pincode, address = @address"
+            .CommandText = "Update myconnector.stocks set desc = @desc , quantity = @quantity , category = @category , price = @price , dof = @dof"
             .CommandType = CommandType.Text
-            .Parameters.AddWithValue("@name", TextBox1.Text)
-            .Parameters.AddWithValue("@phone", TextBox2.Text)
-            .Parameters.AddWithValue("@DOB", DateTimePicker1.Text)
-            .Parameters.AddWithValue("@country", TextBox4.Text)
-            .Parameters.AddWithValue("@state", TextBox5.Text)
-            .Parameters.AddWithValue("@pincode", TextBox6.Text)
-            .Parameters.AddWithValue("@address", TextBox7.Text)
+            .Parameters.AddWithValue("@desc", TextBox1.Text)
+            .Parameters.AddWithValue("@quantity", TextBox2.Text)
+            .Parameters.AddWithValue("@category", TextBox3.Text)
+            .Parameters.AddWithValue("@price", TextBox4.Text)
+            .Parameters.AddWithValue("@dof", DateTimePicker1.Text)
         End With
         sqlCmd.ExecuteNonQuery()
         sqlConn.Close()
         updateTable()
     End Sub
 
+    Private Sub stock_edit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        updateTable()
+    End Sub
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         Try
             TextBox1.Text = DataGridView1.SelectedRows(0).Cells(1).Value.ToString
             TextBox2.Text = DataGridView1.SelectedRows(0).Cells(2).Value.ToString
-            DateTimePicker1.Text = DataGridView1.SelectedRows(0).Cells(3).Value.ToString
+            TextBox3.Text = DataGridView1.SelectedRows(0).Cells(3).Value.ToString
             TextBox4.Text = DataGridView1.SelectedRows(0).Cells(4).Value.ToString
-            TextBox5.Text = DataGridView1.SelectedRows(0).Cells(5).Value.ToString
-            TextBox6.Text = DataGridView1.SelectedRows(0).Cells(6).Value.ToString
-            TextBox7.Text = DataGridView1.SelectedRows(0).Cells(7).Value.ToString
+            DateTimePicker1.Text = DataGridView1.SelectedRows(0).Cells(5).Value.ToString
         Catch ex As Exception
             MessageBox.Show("Not done properly")
         End Try
@@ -120,12 +115,9 @@ Public Class customer_edit
         PrintPreviewDialog1.ShowDialog()
         DataGridView1.Height = height
     End Sub
-
     Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
         e.Graphics.DrawImage(bitmap, 0, 0)
         Dim recP As RectangleF = e.PageSettings.PrintableArea
         If Me.DataGridView1.Height - recP.Height > 0 Then e.HasMorePages = True
     End Sub
-
-
 End Class
